@@ -1,0 +1,54 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.attendease.com/
+docs: https://developer.attendease.com/
+summary: >-
+  Attendease exposes two authentication models. The Organization API (/api/v2/)
+  uses HMAC-SHA1 request signing with an Access Key ID and Secret Access Token.
+  The Event API uses per-event attendee/event tokens (query params or headers)
+  and also accepts HTTP Basic auth. All requests must use HTTPS.
+schemes:
+- id: org_api_hmac
+  api: Attendease Organization API
+  type: http
+  scheme: hmac-sha1
+  header: Authorization
+  format: 'APIAuth <access_key>:<signature>'
+  signing:
+    algorithm: HMAC-SHA1
+    encoding: base64
+    canonical_string: content-type,content-MD5,request-URI,timestamp
+    timestamp_header: Date
+    timestamp_format: RFC 1123
+    timestamp_skew_minutes: 15
+    content_md5: base64 MD5 of request body (PUT/POST only; empty for GET)
+    notes: >-
+      Query strings are part of the request URI but are not factored into the
+      Content-MD5. Signature = Base64.strict_encode64(HMAC-SHA1(secret_key,
+      canonical_string)).
+- id: event_attendee_token
+  api: Attendease Event API
+  type: apiKey
+  in: header
+  name: X-Attendee-Token
+  alt_in: query
+  alt_name: attendee_token
+  description: Per-attendee access token scoped to a single event.
+- id: event_token
+  api: Attendease Event API
+  type: apiKey
+  in: header
+  name: X-Event-Token
+  description: Event-level access token scoped to a single event subdomain.
+- id: event_basic
+  api: Attendease Event API
+  type: http
+  scheme: basic
+  description: HTTP Basic auth with email/password (also accepted as query params).
+credentials:
+  org_api: >-
+    Access Key ID + Secret Access Token issued at the organization level.
+  event_api: >-
+    Attendee tokens managed per event at
+    https://attendease.com/events/<event-subdomain>/access_tokens
+transport: HTTPS required for all requests.
