@@ -1,0 +1,13 @@
+generated: '2026-07-18'
+method: generated
+source: https://developer.attendease.com/
+type: AgentSkill
+skills:
+- name: attendease-event-checkin
+  file: attendease-event-checkin.md
+  description: Check attendees in at an Attendease event and reconcile session attendance.
+  api: Attendease Organization API
+- name: attendease-contact-lists
+  file: attendease-contact-lists.md
+  description: Build and maintain Attendease contact lists and their contacts.
+  api: Attendease Organization API

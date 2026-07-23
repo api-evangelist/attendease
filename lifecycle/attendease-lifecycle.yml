@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.attendease.com/
+docs: https://developer.attendease.com/
+versioning:
+  style: path
+  current: v2
+  path_prefix: /api/v2/
+  notes: >-
+    The Organization API is versioned in the path at /api/v2/. The Event API is
+    unversioned. A prior v1 is implied by the v2 designation.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  notes: >-
+    No published deprecation policy or RFC 8594 Sunset/Deprecation header usage
+    was found in the developer documentation.
+status_page:
+  present: false
+  notes: No public status page was found for Attendease / EventUp Planner.
+sla:
+  published: false
+provider_change:
+  note: >-
+    Attendease was acquired by Tripleseat and rebranded to EventUp Planner; the
+    developer API remains hosted at developer.attendease.com.

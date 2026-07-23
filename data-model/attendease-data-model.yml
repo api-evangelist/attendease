@@ -1,0 +1,99 @@
+generated: '2026-07-18'
+method: derived
+source: https://developer.attendease.com/
+notes: >-
+  Entity-relationship graph derived from the documented Attendease Organization
+  API (/api/v2/) and Event API resource paths. No OpenAPI spec is published, so
+  relationships are inferred from nested path structure.
+entities:
+- name: business_unit
+  path: /api/v2/business_units.json
+  scope: organization
+- name: event
+  path: /api/v2/events.json
+  scope: organization
+- name: member
+  path: /api/v2/members/<id>
+  scope: organization
+- name: attendee
+  path: /api/v2/attendees.json
+  scope: organization
+- name: session
+  path: /api/v2/events/<event_id>/sessions.json
+  scope: event
+- name: session_instance
+  path: /api/v2/events/<event_id>/sessions/<session_id>/instances/<timeslot_id>
+  scope: event
+- name: session_attendance
+  path: /api/v2/session_attendance.json
+  scope: organization
+- name: checkin
+  path: /api/v2/attendees/<attendee_id>/checkins.json
+  scope: organization
+- name: partner
+  path: /api/v2/partners/<email>
+  scope: organization
+- name: contact_list
+  path: /api/v2/contact_lists.json
+  scope: organization
+- name: contact
+  path: /api/v2/contact_lists/<contact_list_id>/contacts.json
+  scope: contact_list
+- name: presenter
+  scope: event
+- name: survey
+  scope: event
+- name: sponsor
+  scope: event
+- name: room
+  scope: event
+- name: venue
+  scope: event
+relationships:
+- from: event
+  type: has_many
+  to: session
+  via: event_id
+- from: session
+  type: has_many
+  to: session_instance
+  via: session_id
+- from: session_instance
+  type: has_many
+  to: attendee
+  via: timeslot_id
+- from: attendee
+  type: has_many
+  to: checkin
+  via: attendee_id
+- from: attendee
+  type: has_many
+  to: session_attendance
+  via: attendee_id
+- from: contact_list
+  type: has_many
+  to: contact
+  via: contact_list_id
+- from: business_unit
+  type: has_many
+  to: event
+  via: business_unit
+- from: event
+  type: has_many
+  to: attendee
+  via: event_id
+- from: event
+  type: has_many
+  to: presenter
+- from: event
+  type: has_many
+  to: survey
+- from: event
+  type: has_many
+  to: sponsor
+- from: event
+  type: has_many
+  to: room
+- from: event
+  type: has_many
+  to: venue

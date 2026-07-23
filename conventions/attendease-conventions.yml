@@ -1,0 +1,57 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.attendease.com/
+docs: https://developer.attendease.com/
+summary: >-
+  Cross-cutting semantics for the Attendease Organization and Event APIs, derived
+  from the public developer documentation.
+auth:
+  style: HMAC-SHA1 request signing (Organization API) / attendee-event tokens +
+    HTTP Basic (Event API)
+  transport: HTTPS required
+  see: authentication/attendease-authentication.yml
+media_type:
+  request: application/json
+  response: application/json
+  resource_suffix: >-
+    Resource paths carry a .json suffix (e.g. /api/v2/events.json).
+versioning:
+  style: path
+  current: v2
+  path_prefix: /api/v2/
+  notes: Organization API is versioned at /api/v2/; the Event API is unversioned.
+pagination:
+  style: page-number
+  request_params:
+    page: Current page number.
+    records_per_page: Records per page, integer 1-100 (default 50).
+  response_envelope:
+    field: pagination
+    fields:
+      total_records: Total count across all pages.
+      num_records: Count of records on the current page (<= page_size).
+      page_size: Records per page (default 50).
+      page_count: Total number of pages.
+      page: Current page number.
+metadata:
+  description: >-
+    Custom fields are read and filtered through a meta parameter and written in a
+    meta object on the resource.
+  filter_query: '?meta[key]=value (multiple meta params AND together)'
+  boolean_values: "?meta[key]=true; quote to match literal strings: ?meta[key]='true'"
+  request_payload: '{ "meta": { "foo": "red", "bar": ["apple","banana"], "bat": true } }'
+error_envelope:
+  shape: '{ "error": "descriptive message" }'
+  validation_shape: 'errors object with field-specific messages (HTTP 422)'
+  format: custom-json
+  see: errors/attendease-problem-types.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency key header or documented idempotent-retry semantics were found
+    in the developer documentation.
+rate_limiting:
+  documented: false
+  notes: >-
+    Throttling is recommended and HTTP 429 may be returned, but no published
+    rate-limit headers or numeric quotas were found.

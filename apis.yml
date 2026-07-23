@@ -1,25 +1,145 @@
 aid: attendease
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/attendease.png
 name: Attendease
-description: Attendease is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Attendease (now EventUp Planner, following its acquisition by Tripleseat) is an
+  event and meeting management platform for planning, promoting, and running
+  virtual, in-person, and hybrid events such as conferences, webinars, roadshows,
+  and product launches. Attendease exposes a public developer API in two tiers: an
+  Event API scoped to a single event subdomain (attendee tokens, sessions,
+  presenters, surveys, sponsors, rooms, venues, and content) and an Organization
+  API (`/api/v2/`) that spans business units, events, members, attendees, session
+  attendance, check-ins, partners, and contact lists. The Organization API is
+  authenticated with HMAC-SHA1 request signing (`Authorization: APIAuth
+  access_key:signature`) while the Event API uses attendee/event tokens and HTTP
+  Basic auth. First-party JavaScript and Ruby SDKs plus a Jekyll plugin are
+  published to npm and RubyGems.
 url: https://raw.githubusercontent.com/api-evangelist/attendease/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
-specificationVersion: '0.20'
-created: '2026-07-17'
-modified: '2026-07-17'
+x-acquired-by: tripleseat
+x-rebranded-to: EventUp Planner
 tags:
 - Company
-apis: []
+- Events
+- Event Management
+- Event Marketing
+- Conferences
+- Webinars
+- Attendees
+- Registration
+- SaaS
+specificationVersion: '0.20'
+created: '2026-07-17'
+modified: '2026-07-18'
+apis:
+- name: Attendease Organization API
+  description: >-
+    Organization-level REST API (v2) spanning business units, events, members,
+    attendees, session attendance, check-ins, partners, and contact lists.
+    Authenticated with HMAC-SHA1 request signing (APIAuth). JSON responses with a
+    pagination envelope and custom metadata filtering.
+  humanURL: https://developer.attendease.com/
+  baseURL: https://your-org.attendease.org/api/v2/
+  tags:
+  - Events
+  - Attendees
+  - Organization
+  properties:
+  - type: Authentication
+    url: authentication/attendease-authentication.yml
+  - type: Conventions
+    url: conventions/attendease-conventions.yml
+  - type: ErrorCatalog
+    url: errors/attendease-problem-types.yml
+  - type: DataModel
+    url: data-model/attendease-data-model.yml
+  - type: MCPServer
+    url: mcp/attendease-mcp.yml
+- name: Attendease Event API
+  description: >-
+    Event-scoped REST API bound to a single event subdomain covering event
+    properties, sessions and session instances, presenters, surveys, sponsors,
+    rooms, venues, filters, and content. Authenticated with attendee/event tokens
+    or HTTP Basic auth.
+  humanURL: https://developer.attendease.com/
+  baseURL: https://your-event.attendease.com/api/
+  tags:
+  - Events
+  - Sessions
+  - Presenters
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/attendease-domain-security.yml
 - type: Website
-  url: https://attendease.com
+  url: https://eventupplanner.com
+- type: DeveloperPortal
+  url: https://developer.attendease.com/
+- type: Documentation
+  url: https://developer.attendease.com/
+- type: APIReference
+  url: https://developer.attendease.com/
+- type: SignUp
+  url: https://dashboard.attendease.com/
+- type: Login
+  url: https://dashboard.attendease.com/
+- type: Support
+  url: https://eventupplanner.zendesk.com/hc/en-us
+- type: Blog
+  url: https://eventupplanner.com/blog/
+- type: Integrations
+  url: https://eventupplanner.com/integrations/
+- type: TermsOfService
+  url: https://eventupplanner.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://eventupplanner.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/attendease
+- type: Packages
+  url: packages/attendease-packages.yml
+- type: SDKs
+  url: packages/attendease-packages.yml
+- type: Authentication
+  url: authentication/attendease-authentication.yml
+- type: Conventions
+  url: conventions/attendease-conventions.yml
+- type: ErrorCatalog
+  url: errors/attendease-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/attendease-lifecycle.yml
+- type: Conformance
+  url: conformance/attendease-conformance.yml
+- type: DataModel
+  url: data-model/attendease-data-model.yml
+- type: MCPServer
+  url: mcp/attendease-mcp.yml
+- type: LLMsTxt
+  url: llms/attendease-llms.txt
+- type: Components
+  url: components/attendease-components.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

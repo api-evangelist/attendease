@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: derived
+source: https://developer.attendease.com/
+notes: >-
+  Cross-cutting standards conformance derived from the Attendease developer
+  documentation. Absence of a claim is recorded honestly as conforms:false.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Organization API uses HMAC-SHA1 request signing; Event API uses tokens/Basic. No OAuth 2.0.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery or flows documented.
+- id: rfc9457
+  conforms: false
+  evidence: 'Errors use a custom { "error": "..." } JSON envelope, not application/problem+json.'
+- id: pagination
+  conforms: true
+  evidence: Page-number pagination with a pagination envelope (total_records, page_size, page_count, page).
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key or idempotent-retry semantics documented.
+- id: hmac-request-signing
+  conforms: true
+  evidence: Organization API signs requests with HMAC-SHA1 over a canonical string (APIAuth Authorization header, 15-minute skew).
+- id: json-api
+  conforms: false
+  evidence: JSON responses do not follow the JSON:API media type or structure.
+- id: fhir
+  conforms: false
+  evidence: Not a healthcare API.
+- id: scim
+  conforms: false
+  evidence: No SCIM user/group provisioning surface.
+- id: odata
+  conforms: false
+  evidence: No OData query conventions; filtering is via a custom meta[] parameter.

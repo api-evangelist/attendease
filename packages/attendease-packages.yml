@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/package/attendease, https://rubygems.org/gems/attendease, https://github.com/attendease
+packages:
+- language: javascript
+  registry: npm
+  name: attendease
+  url: https://www.npmjs.com/package/attendease
+  install: npm install attendease
+  repository: https://github.com/attendease/attendease-js
+  description: Official JavaScript/Node SDK for Attendease.
+  version: 1.0.1
+  official: true
+- language: javascript
+  registry: npm
+  name: attendease-blocks
+  url: https://www.npmjs.com/package/attendease-blocks
+  install: npm install attendease-blocks
+  repository: https://github.com/attendease/attendease-blocks
+  description: CMS Blocks for Attendease.
+  official: true
+- language: ruby
+  registry: rubygems
+  name: attendease
+  url: https://rubygems.org/gems/attendease
+  install: gem install attendease
+  description: Start building your event today! Ruby client for Attendease.
+  author: Michael Wood
+  official: true
+- language: ruby
+  registry: rubygems
+  name: jekyll-attendease
+  url: https://rubygems.org/gems/jekyll-attendease
+  install: gem install jekyll-attendease
+  repository: https://github.com/attendease/jekyll-attendease
+  description: Bring your event data into Jekyll for amazing event websites.
+  official: true
+notes: >-
+  First-party SDKs published under the github.com/attendease organization. The
+  Ruby SDK also appears as attendease-sdk-ruby in the org. No PyPI, NuGet, Maven,
+  Go, Packagist, or crates.io first-party package was found.

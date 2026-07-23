@@ -1,0 +1,60 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: https://developer.attendease.com/
+notes: >-
+  No official hosted/remote MCP server was found for Attendease. This is a
+  CANDIDATE tool list derived from the documented Organization API (/api/v2/)
+  operations, intended as a proposal for an MCP wrapper.
+server:
+  name: attendease
+  transport: http
+tools:
+- name: list_business_units
+  description: List organization business units.
+  source_operation: GET /api/v2/business_units.json
+- name: list_events
+  description: List events across the organization.
+  source_operation: GET /api/v2/events.json
+- name: update_event
+  description: Update an event.
+  source_operation: PUT /api/v2/events/<id>
+- name: list_attendees
+  description: List attendees across the organization.
+  source_operation: GET /api/v2/attendees.json
+- name: list_event_attendees
+  description: List attendees for a specific event.
+  source_operation: GET /api/v2/events/<event_id>/attendees.json
+- name: update_attendee
+  description: Update an attendee.
+  source_operation: PUT /api/v2/attendees/<id>
+- name: get_member
+  description: Get an organization member.
+  source_operation: GET /api/v2/members/<id>
+- name: obfuscate_member
+  description: Obfuscate (anonymize) a member's PII.
+  source_operation: PUT /api/v2/members/<id>/obfuscate
+- name: create_checkin
+  description: Check an attendee in.
+  source_operation: POST /api/v2/attendees/<attendee_id>/checkins.json
+- name: list_event_sessions
+  description: List sessions for an event.
+  source_operation: GET /api/v2/events/<event_id>/sessions.json
+- name: update_session
+  description: Update a session.
+  source_operation: PUT /api/v2/events/<event_id>/sessions/<session_id>.json
+- name: list_session_attendance
+  description: List session attendance records.
+  source_operation: GET /api/v2/session_attendance.json
+- name: list_contact_lists
+  description: List contact lists.
+  source_operation: GET /api/v2/contact_lists.json
+- name: create_contact_list
+  description: Create a contact list.
+  source_operation: POST /api/v2/contact_lists.json
+- name: list_contacts
+  description: List contacts in a contact list.
+  source_operation: GET /api/v2/contact_lists/<contact_list_id>/contacts.json
+- name: add_contact
+  description: Add a contact to a contact list.
+  source_operation: POST /api/v2/contact_lists/<contact_list_id>/contacts.json

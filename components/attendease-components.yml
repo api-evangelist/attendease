@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/attendease, https://www.npmjs.com/package/attendease-blocks
+notes: >-
+  Client-side / embeddable building blocks Attendease publishes for rendering
+  event data and content into external sites. Distinct from the API SDKs in
+  packages/.
+families:
+- name: CMS Blocks
+  package: attendease-blocks
+  registry: npm
+  url: https://www.npmjs.com/package/attendease-blocks
+  repository: https://github.com/attendease/attendease-blocks
+  description: >-
+    Reusable content/CMS blocks for building Attendease event websites and
+    embedding event content.
+- name: Jekyll Event Website Plugin
+  package: jekyll-attendease
+  registry: rubygems
+  url: https://rubygems.org/gems/jekyll-attendease
+  repository: https://github.com/attendease/jekyll-attendease
+  description: >-
+    Jekyll plugin that pulls event data into a static site to build event
+    websites from Attendease data.

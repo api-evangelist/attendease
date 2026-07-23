@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.attendease.com/
+docs: https://developer.attendease.com/
+format: custom-json
+envelope:
+  shape: '{ "error": "descriptive message" }'
+  validation_shape: '{ "errors": { "<field>": ["message"] } }'
+  media_type: application/json
+notes: >-
+  Attendease returns a simple JSON error envelope with a single "error" string
+  and the corresponding HTTP status code. Validation failures (422) return a
+  field-keyed errors object. This is not RFC 9457 problem+json.
+errors:
+- status: 401
+  title: Unauthorized
+  message: Could not authenticate you.
+  cause: Missing or invalid credentials / signature; timestamp outside the 15-minute skew.
+  remediation: Verify Access Key, regenerate the HMAC signature, and ensure the Date header is within 15 minutes of server time.
+- status: 403
+  title: Forbidden
+  message: You do not have the correct permissions to access this.
+  cause: Authenticated identity lacks permission for the resource.
+  remediation: Request access for the identity or use a credential scoped to the resource.
+- status: 404
+  title: Not Found
+  message: Resource not found.
+  cause: The requested resource or path does not exist.
+  remediation: Verify the resource id and path.
+- status: 422
+  title: Unprocessable Entity
+  message: Validation errors (field-specific messages).
+  cause: Request payload failed validation.
+  remediation: Inspect the field-keyed errors object and correct the payload.
+- status: 429
+  title: Too Many Requests
+  message: Rate limited.
+  cause: Client exceeded acceptable request throughput.
+  remediation: Back off and throttle requests before retrying.
+- status: 500
+  title: Internal Server Error
+  message: Server error.
+  cause: Unexpected server-side failure.
+  remediation: Retry later; contact support if it persists.
