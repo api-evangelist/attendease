@@ -45,7 +45,7 @@ tags:
 - SaaS
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-13'
 apis:
 - name: Attendease Organization API
   description: >-
@@ -70,6 +70,12 @@ apis:
     url: data-model/attendease-data-model.yml
   - type: MCPServer
     url: mcp/attendease-mcp.yml
+  - type: RateLimits
+    url: rate-limits/attendease-rate-limits.yml
+  - type: Plans
+    url: plans/attendease-plans-pricing.yml
+  - type: Lifecycle
+    url: lifecycle/attendease-lifecycle.yml
 - name: Attendease Event API
   description: >-
     Event-scoped REST API bound to a single event subdomain covering event
@@ -82,6 +88,17 @@ apis:
   - Events
   - Sessions
   - Presenters
+  properties:
+  - type: Authentication
+    url: authentication/attendease-authentication.yml
+  - type: Conventions
+    url: conventions/attendease-conventions.yml
+  - type: ErrorCatalog
+    url: errors/attendease-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/attendease-rate-limits.yml
+  - type: Plans
+    url: plans/attendease-plans-pricing.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -138,8 +155,32 @@ common:
   url: components/attendease-components.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: Plans
+  url: plans/attendease-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/attendease-rate-limits.yml
+- type: Compliance
+  url: conformance/attendease-conformance.yml
+- type: Pricing
+  url: https://eventupplanner.com/plans-and-pricing/
+- type: StatusPage
+  url: https://status.attendease.com/
+- type: Accessibility
+  url: https://eventupplanner.com/accessibility/
+- type: HelpCenter
+  url: https://eventupplanner.zendesk.com/hc/en-us
+- type: ServicesAgreement
+  url: https://eventupplanner.com/services-agreement/
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 3
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Contract discovery re-run against all four hosts — no OpenAPI/GraphQL/MCP/A2A
+    surface exists; developer.attendease.com answers every path with the same
+    243KB Slate HTML shell. New: plans (API access is Enterprise-only),
+    rate-limits, well-known probe index. Upgraded: lifecycle (live StatusCake
+    status page found at status.attendease.com), packages (dated registry
+    currency — SDKs unreleased since 2017), conformance (VPAT/WCAG 2.1 AA/ADA;
+    no security attestation), authentication (token lifecycle from help center).
