@@ -1,6 +1,18 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-source: https://www.npmjs.com/package/attendease, https://rubygems.org/gems/attendease, https://github.com/attendease
+source: https://registry.npmjs.org/attendease, https://registry.npmjs.org/attendease-blocks, https://rubygems.org/api/v1/gems/attendease.json, https://rubygems.org/api/v1/gems/jekyll-attendease.json, https://github.com/attendease
+notes: >-
+  First-party SDKs published under the github.com/attendease organization.
+  Versions and publish dates below were read from the registry metadata endpoints
+  on 2026-08-13. CURRENCY IS THE FINDING: every published first-party client is
+  stale relative to the API it wraps. The JavaScript SDK last shipped in January
+  2017, the CMS Blocks package in March 2017, and the RubyGems "attendease" gem is
+  a 0.0.0 placeholder from 2014 that was never developed. Only the Jekyll plugin
+  has a release this decade (2023). The one actively maintained repository,
+  attendease-sdk-ruby (pushed 2025-01-29), has never been published to RubyGems —
+  its gemspec name "attendease_sdk" returns 404 there — so it is installable only
+  from source. No PyPI, NuGet, Maven, Go, Packagist, or crates.io first-party
+  package exists.
 packages:
 - language: javascript
   registry: npm
@@ -10,7 +22,11 @@ packages:
   repository: https://github.com/attendease/attendease-js
   description: Official JavaScript/Node SDK for Attendease.
   version: 1.0.1
+  published: '2017-01-30'
   official: true
+  note: >-
+    Latest release is 1.0.1 from 2017-01-30; the attendease-js repository was last
+    pushed 2017-01-30. Nine years without a release.
 - language: javascript
   registry: npm
   name: attendease-blocks
@@ -18,7 +34,10 @@ packages:
   install: npm install attendease-blocks
   repository: https://github.com/attendease/attendease-blocks
   description: CMS Blocks for Attendease.
+  version: 0.4.63
+  published: '2017-03-05'
   official: true
+  note: Pre-1.0 and unreleased since 2017-03-05. See components/attendease-components.yml.
 - language: ruby
   registry: rubygems
   name: attendease
@@ -26,7 +45,13 @@ packages:
   install: gem install attendease
   description: Start building your event today! Ruby client for Attendease.
   author: Michael Wood
+  version: 0.0.0
+  published: '2014-12-05'
   official: true
+  note: >-
+    Version 0.0.0, published 2014-12-05 and never updated — a reserved name /
+    placeholder gem, not a working client. The real Ruby SDK lives unpublished at
+    github.com/attendease/attendease-sdk-ruby.
 - language: ruby
   registry: rubygems
   name: jekyll-attendease
@@ -34,8 +59,46 @@ packages:
   install: gem install jekyll-attendease
   repository: https://github.com/attendease/jekyll-attendease
   description: Bring your event data into Jekyll for amazing event websites.
+  version: 0.9.9.7
+  published: '2023-10-19'
   official: true
-notes: >-
-  First-party SDKs published under the github.com/attendease organization. The
-  Ruby SDK also appears as attendease-sdk-ruby in the org. No PyPI, NuGet, Maven,
-  Go, Packagist, or crates.io first-party package was found.
+  note: >-
+    The most recently released first-party package (2023-10-19). Its declared
+    source_code_uri, github.com/attendease/jekyll-attendease, now returns HTTP 404
+    — the repository has been removed or made private, so the gem's source is no
+    longer public.
+- language: ruby
+  registry: source
+  name: attendease_sdk
+  url: https://github.com/attendease/attendease-sdk-ruby
+  install: 'add to Gemfile: gem "attendease_sdk", git: "https://github.com/attendease/attendease-sdk-ruby"'
+  repository: https://github.com/attendease/attendease-sdk-ruby
+  description: Attendease SDK in Ruby — the maintained Ruby client, source-only.
+  version: null
+  published: null
+  official: true
+  note: >-
+    version/published are null because this package is not distributed through any
+    registry — checked, nothing to record. rubygems.org/api/v1/gems/attendease_sdk
+    returns 404 and rubygems.org/api/v1/gems/attendease-sdk returns 404. The
+    repository carries attendease_sdk.gemspec and was last pushed 2025-01-29,
+    making it the only first-party client with recent activity, but consumers must
+    install it from git.
+registries_checked:
+- registry: npm
+  result: 2 first-party packages
+- registry: rubygems
+  result: 2 first-party gems (one a 0.0.0 placeholder)
+- registry: pypi
+  result: none
+- registry: nuget
+  result: none
+- registry: maven-central
+  result: none
+- registry: pkg.go.dev
+  result: none
+- registry: packagist
+  result: none
+- registry: crates.io
+  result: none
+checked: '2026-08-13'

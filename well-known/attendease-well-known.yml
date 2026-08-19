@@ -1,0 +1,170 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every apis.yml host
+notes: >-
+  Every /.well-known/ path was probed on all four Attendease / EventUp Planner
+  hosts. NOTHING was served. developer.attendease.com is a static Slate
+  single-page docs site whose server answers EVERY path with the same 243,499-byte
+  HTML document, so its 200s are soft-200 SPA/catch-all shells, not documents, and
+  are recorded as misses. eventupplanner.com and attendease.com return a real 404
+  for every path. dashboard.attendease.com requires authentication and returns 401
+  (or 406) for every path. No WellKnown or SecurityTxt pointer is emitted, because
+  no path returned a real document.
+probes:
+- host: developer.attendease.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; returns the docs HTML shell (243499 bytes), not a security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body, not an AgentCard JSON object
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body, not an AgentCard JSON object
+  - path: /llms.txt
+    status: 200
+    file: null
+    result: miss
+    note: soft-200 catch-all; identical HTML body
+- host: eventupplanner.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+    result: miss
+  - path: /llms.txt
+    status: 404
+    file: null
+    result: miss
+- host: attendease.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+    result: miss
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+    result: miss
+  - path: /llms.txt
+    status: 404
+    file: null
+    result: miss
+- host: dashboard.attendease.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 406
+    file: null
+    result: miss
+  - path: /.well-known/openid-configuration
+    status: 401
+    file: null
+    result: miss
+    note: authentication required
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+    file: null
+    result: miss
+    note: authentication required
+  - path: /.well-known/api-catalog
+    status: 401
+    file: null
+    result: miss
+  - path: /.well-known/ai-plugin.json
+    status: 401
+    file: null
+    result: miss
+  - path: /.well-known/agent-card.json
+    status: 401
+    file: null
+    result: miss
+  - path: /.well-known/agent.json
+    status: 401
+    file: null
+    result: miss
+  - path: /llms.txt
+    status: 406
+    file: null
+    result: miss
+summary:
+  hosts_probed: 4
+  paths_probed: 32
+  documents_found: 0
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+checked: '2026-08-13'

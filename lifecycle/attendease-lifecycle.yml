@@ -1,6 +1,6 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-source: https://developer.attendease.com/
+source: https://developer.attendease.com/, https://status.attendease.com/, https://eventupplanner.zendesk.com/hc/en-us/articles/27101251292311-Off-Boarding-Organizations-and-Events-When-an-Account-Expires
 docs: https://developer.attendease.com/
 versioning:
   style: path
@@ -13,14 +13,52 @@ deprecation:
   policy_published: false
   sunset_header: false
   notes: >-
-    No published deprecation policy or RFC 8594 Sunset/Deprecation header usage
-    was found in the developer documentation.
+    No published deprecation policy and no RFC 8594 Sunset/Deprecation header
+    usage was found in the developer documentation or the help center.
 status_page:
-  present: false
-  notes: No public status page was found for Attendease / EventUp Planner.
+  present: true
+  url: https://status.attendease.com/
+  provider: StatusCake
+  http_status: 200
+  checked: '2026-08-13'
+  machine_readable: false
+  notes: >-
+    A StatusCake public report is served on Attendease's own subdomain
+    (PublicID=status.attendease.com) showing per-monitor uptime history, 7-day
+    uptime and an announcements panel. The page body is JS-rendered from
+    StatusCake's Workfloor endpoints, so there is no static incident feed, RSS,
+    or JSON status endpoint to subscribe to. It is a genuine provider-operated
+    status surface, not an incident-communication program.
+  method: probed
 sla:
   published: false
+  notes: No public SLA or uptime commitment was found.
+data_lifecycle:
+  offboarding_policy: true
+  url: https://eventupplanner.zendesk.com/hc/en-us/articles/27101251292311-Off-Boarding-Organizations-and-Events-When-an-Account-Expires
+  notes: >-
+    The help center publishes an off-boarding article covering what happens to
+    organizations and events when an account expires, plus guidance on archiving
+    events. This is the closest thing to a published data-retirement policy.
+credential_lifecycle:
+  event_api: >-
+    Event API access tokens are self-managed under Event -> Access Tokens. A
+    "default" token (a randomly generated 128-bit UUID) is auto-created for every
+    event; additional named tokens can be created and any token can be deleted at
+    any time, which immediately revokes it.
+  organization_api: >-
+    Organization API credentials cannot be self-managed. Deleting or regenerating
+    them requires contacting support.
+  source: https://eventupplanner.zendesk.com/hc/en-us/articles/27101295757207-Event-and-Organization-API-Keys
 provider_change:
   note: >-
-    Attendease was acquired by Tripleseat and rebranded to EventUp Planner; the
-    developer API remains hosted at developer.attendease.com.
+    Attendease was acquired by Tripleseat and rebranded to EventUp Planner. The
+    developer documentation remains hosted at developer.attendease.com under the
+    Attendease name, the API hosts remain on attendease.com / attendease.org, and
+    the help center has moved to eventupplanner.zendesk.com. Tripleseat operates a
+    separate status page (status.tripleseat.com) that does not cover this product.
+sdk_decay:
+  note: >-
+    The first-party npm SDKs have not been republished since 2017 and the
+    RubyGems "attendease" gem is a 0.0.0 placeholder from 2014. See
+    packages/attendease-packages.yml for dated evidence.

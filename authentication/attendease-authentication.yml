@@ -1,6 +1,6 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-source: https://developer.attendease.com/
+source: https://developer.attendease.com/, https://eventupplanner.zendesk.com/hc/en-us/articles/27101295757207-Event-and-Organization-API-Keys, https://eventupplanner.zendesk.com/hc/en-us/articles/27101962543383-How-do-I-add-or-remove-access-tokens
 docs: https://developer.attendease.com/
 summary: >-
   Attendease exposes two authentication models. The Organization API (/api/v2/)
@@ -51,4 +51,54 @@ credentials:
   event_api: >-
     Attendee tokens managed per event at
     https://attendease.com/events/<event-subdomain>/access_tokens
-transport: HTTPS required for all requests.
+credential_management:
+  event_api:
+    self_serve: true
+    console_path: Event -> Integrate -> Access Tokens
+    default_token: >-
+      A token named "default" is created automatically for every event. It is a
+      randomly generated UUID (128-bit value).
+    multiple_tokens: true
+    naming: Each token carries its own name for reference.
+    rotation: Self-serve — add a new token, remove the old one.
+    revocation: Deleting a token immediately prevents authenticating with it.
+    private_events: >-
+      If an event is marked "private", ALL API calls require an access token.
+      Marking an event private requires contacting support.
+    source: https://eventupplanner.zendesk.com/hc/en-us/articles/27101962543383-How-do-I-add-or-remove-access-tokens
+  org_api:
+    self_serve: false
+    rotation: >-
+      Organization API credentials cannot be created, deleted or regenerated from
+      the dashboard. Every change requires contacting support.
+    entitlement: >-
+      The Organization API is offered to ENTERPRISE customers only ("For
+      Enterprise customers, we also offer an Organization API to access all events
+      and attendees at the organization level"). See
+      plans/attendease-plans-pricing.yml.
+    source: https://eventupplanner.zendesk.com/hc/en-us/articles/27101295757207-Event-and-Organization-API-Keys
+  guidance_published:
+    never_share_keys: true
+    delete_unused_keys: true
+    periodic_rotation: true
+    note: >-
+      The help center publishes explicit API-key hygiene guidance: keys act as
+      passwords, delete them when no longer needed, and regenerate them
+      periodically when access must be maintained over long periods.
+sso:
+  available: true
+  scope: Attendee and dashboard SSO
+  plans:
+  - Enterprise
+  protocol_published: false
+  note: >-
+    SSO is listed as an Enterprise entitlement on the plans page but no protocol
+    (SAML/OIDC) or metadata endpoint is documented publicly. The GitHub org
+    carries a fork of saml_idp, which suggests SAML, but that is not a provider
+    statement and is not recorded as fact.
+  source: https://eventupplanner.com/plans-and-pricing/
+mfa:
+  available: true
+  scope: dashboard users (not API)
+  source: https://eventupplanner.zendesk.com/hc/en-us/articles/27102025968919-How-do-I-set-up-two-factor-authentication
+transport: HTTPS required for all requests. Calls made over plain HTTP will fail.

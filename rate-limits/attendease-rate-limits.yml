@@ -1,0 +1,49 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.attendease.com/
+docs: https://developer.attendease.com/
+notes: >-
+  Attendease publishes no numeric rate limits, no quota table, and no rate-limit
+  response headers. The developer documentation contains exactly one throttling
+  statement, and it is an operator advisory attached to a single expensive
+  operation rather than an enforced limit. HTTP 429 is listed in the documented
+  status codes, so exhaustion is signalled, but nothing tells a client what the
+  ceiling is or when it resets. An agent integrating with this API has no runtime
+  budget signal at all and must implement blind exponential backoff.
+limit_count: 1
+enforced_limits_published: false
+headers_published: false
+response_headers: []
+exhaustion:
+  status: 429
+  title: Too Many Requests
+  retry_after_header: false
+  note: >-
+    429 appears in the documented error status list. No Retry-After,
+    X-RateLimit-* or RateLimit-* header is documented or observed.
+limits:
+- id: session-attendance-advisory
+  scope: per-endpoint
+  api: Attendease Organization API
+  operation: GET /api/v2/session_attendance.json
+  enforced: false
+  advisory: true
+  window: 300s
+  limit: 1
+  burst: null
+  description: >-
+    "Although at present a formal throttling mechanism is not associated with this
+    call, it is strongly recommended that no less than 300 second should elapse
+    between session_attendance calls." The docs additionally warn the call carries
+    large overhead and to allow several seconds for each call to return.
+  source: https://developer.attendease.com/
+non_paginated_endpoints:
+- operation: session_attendees (Multi-session)
+  note: >-
+    Documented as the one Organization API call that does not return paginated
+    results, so response size is unbounded — a practical throughput hazard in the
+    absence of published limits.
+recommendation: >-
+  Throttle client-side, honour 429 with exponential backoff, and keep at least 300
+  seconds between session_attendance polls.
+checked: '2026-08-13'

@@ -1,37 +1,117 @@
-generated: '2026-07-18'
-method: derived
-source: https://developer.attendease.com/
+generated: '2026-08-13'
+method: searched
+source: https://developer.attendease.com/, https://eventupplanner.com/accessibility/, https://eventupplanner.com/privacy-policy/
 notes: >-
-  Cross-cutting standards conformance derived from the Attendease developer
-  documentation. Absence of a claim is recorded honestly as conforms:false.
+  Cross-cutting standards conformance for the Attendease / EventUp Planner APIs
+  and platform. API-protocol entries are derived from the public developer
+  documentation; the accessibility entries are searched from the provider's own
+  published accessibility page. Absence of a claim is recorded honestly as
+  conforms:false. Attendease publishes NO security-certification program — no SOC
+  2, ISO 27001, PCI DSS, HIPAA or FedRAMP attestation is published on any
+  Attendease or EventUp Planner surface, and the parent company's trust center at
+  trust.tripleseat.com returned HTTP 403 to an anonymous probe on 2026-08-13.
 standards:
 - id: oauth2
   conforms: false
   evidence: Organization API uses HMAC-SHA1 request signing; Event API uses tokens/Basic. No OAuth 2.0.
 - id: oidc
   conforms: false
-  evidence: No OpenID Connect discovery or flows documented.
+  evidence: No OpenID Connect discovery or flows documented; /.well-known/openid-configuration 404s on every host.
 - id: rfc9457
   conforms: false
   evidence: 'Errors use a custom { "error": "..." } JSON envelope, not application/problem+json.'
 - id: pagination
   conforms: true
-  evidence: Page-number pagination with a pagination envelope (total_records, page_size, page_count, page).
+  evidence: Page-number pagination with a pagination envelope (total_records, num_records, page_size, page_count, page) on all Organization API calls except session_attendees (Multi-session).
 - id: idempotency
   conforms: false
   evidence: No idempotency key or idempotent-retry semantics documented.
 - id: hmac-request-signing
   conforms: true
-  evidence: Organization API signs requests with HMAC-SHA1 over a canonical string (APIAuth Authorization header, 15-minute skew).
+  evidence: Organization API signs requests with HMAC-SHA1 over a canonical string (APIAuth Authorization header, RFC 1123 Date, 15-minute skew).
+- id: rfc6750
+  conforms: false
+  evidence: Tokens are passed as X-Attendee-Token / X-Event-Token headers or query params, not as RFC 6750 Bearer tokens.
 - id: json-api
   conforms: false
   evidence: JSON responses do not follow the JSON:API media type or structure.
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI/Swagger document is published; the reference is a static Slate HTML page and every spec path on developer.attendease.com returns the same HTML shell.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface exists to describe; a help-center search for "webhook" returns 0 articles and the developer docs never mention webhooks.
+- id: mcp
+  conforms: false
+  evidence: No Model Context Protocol server is published; mcp/attendease-mcp.yml is a derived candidate with deployment mode none.
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json miss on every host (404, 401, or soft-200 HTML shell).
 - id: fhir
   conforms: false
   evidence: Not a healthcare API.
 - id: scim
   conforms: false
-  evidence: No SCIM user/group provisioning surface.
+  evidence: No SCIM user/group provisioning surface; SSO is an Enterprise entitlement but no provisioning standard is named.
 - id: odata
   conforms: false
   evidence: No OData query conventions; filtering is via a custom meta[] parameter.
+- id: wcag-2.1-aa
+  conforms: true
+  evidence: >-
+    "Use our ready-to-use event website and registration form pre-built event
+    website templates that are WCAG Version 2.1 Level AA Compliant" —
+    https://eventupplanner.com/accessibility/. Scope is the generated event
+    websites and registration forms, not the API.
+- id: vpat
+  conforms: true
+  evidence: >-
+    "Our Voluntary Product Accessibility Template (VPAT) certification confirms
+    the accessibility conformation" — https://eventupplanner.com/accessibility/.
+    The VPAT document itself is not published for download.
+- id: ada
+  conforms: true
+  evidence: >-
+    "EventUp Planner has fulfilled the goal of making our products and features
+    Americans with Disabilities Act (ADA) compliant" —
+    https://eventupplanner.com/accessibility/.
+- id: soc2
+  conforms: false
+  evidence: No SOC 2 report or attestation is published on any Attendease or EventUp Planner surface; a help-center search returns no security-attestation article.
+- id: iso-27001
+  conforms: false
+  evidence: No ISO 27001 certification published.
+- id: pci-dss
+  conforms: false
+  evidence: >-
+    Payments are processed through a Stripe integration
+    (https://eventupplanner.zendesk.com/hc/en-us/articles/27101337041815-Stripe-Integration);
+    no first-party PCI DSS attestation is published.
+- id: hipaa
+  conforms: false
+  evidence: Healthcare is marketed as a vertical but no HIPAA/BAA claim is published.
+compliance:
+  published: true
+  scope: accessibility only
+  url: https://eventupplanner.com/accessibility/
+  programs:
+  - name: VPAT (Voluntary Product Accessibility Template)
+    status: certified
+    self_asserted: true
+    document_published: false
+  - name: WCAG 2.1 Level AA
+    status: compliant
+    self_asserted: true
+    scope: pre-built event website and registration form templates
+  - name: ADA
+    status: compliant
+    self_asserted: true
+  security_certifications: []
+  note: >-
+    The ONLY compliance program EventUp Planner publishes is accessibility
+    (VPAT / WCAG 2.1 AA / ADA), and all three claims are self-asserted with no
+    downloadable attestation. There is no published security or privacy
+    certification. Recording this precisely matters: an accessibility VPAT is not
+    a security attestation, and a buyer doing vendor diligence on this platform
+    will find nothing on the security side without going through sales.
+checked: '2026-08-13'

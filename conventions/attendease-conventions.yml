@@ -52,6 +52,18 @@ idempotency:
     in the developer documentation.
 rate_limiting:
   documented: false
+  headers: []
+  exhaustion_status: 429
+  advisory: >-
+    One published advisory only: no less than 300 seconds should elapse between
+    session_attendance calls. No enforced limits, no quota table, and no
+    rate-limit response headers are published.
+  see: rate-limits/attendease-rate-limits.yml
   notes: >-
-    Throttling is recommended and HTTP 429 may be returned, but no published
-    rate-limit headers or numeric quotas were found.
+    HTTP 429 may be returned, but nothing tells a client the ceiling or the reset
+    window, so clients must back off blind.
+entitlement:
+  note: >-
+    API access is an Enterprise-plan entitlement; the Organization API is offered
+    to Enterprise customers only and its credentials are issued by support.
+  see: plans/attendease-plans-pricing.yml

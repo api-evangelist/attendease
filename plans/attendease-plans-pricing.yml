@@ -1,0 +1,115 @@
+generated: '2026-08-13'
+method: searched
+source: https://eventupplanner.com/plans-and-pricing/
+docs: https://eventupplanner.com/plans-and-pricing/
+notes: >-
+  EventUp Planner (formerly Attendease) publishes a three-tier plan comparison
+  table with named tiers and per-tier feature/quota entitlements, but publishes NO
+  prices — every tier routes to a sales conversation. The single most important
+  fact for an API consumer is on this page: API Access is an ENTERPRISE-ONLY
+  entitlement. The developer documentation is fully public, but the Organization
+  API (/api/v2/) is only offered to Enterprise customers, and its credentials are
+  issued and rotated by support rather than self-serve
+  (https://eventupplanner.zendesk.com/hc/en-us/articles/27101295757207).
+plan_count: 3
+pricing_published: false
+currency: null
+billing_period: null
+pricing_model: >-
+  Flat platform subscription. No per-registration fee and no percentage of ticket
+  sales; unlimited events on every tier. Amounts are not published.
+plans:
+- name: Tickets
+  price: null
+  currency: null
+  billing_period: null
+  api_access: false
+  quotas:
+    events: unlimited
+    attendees: 200
+    email_messages_per_event: 200
+  included:
+  - Registration form builder
+  - Unique registration forms for specific pass types and group passes
+  - Pre-built website templates customizable via CMS
+  - Save customized websites as templates
+  - Create new custom website templates
+  - Drag-and-drop email templates for every event
+  excluded:
+  - API access
+  - SSO
+  - Room capacity and waitlists
+  - Onsite check-in app
+  - Surveys
+  - Analytics and reporting
+  - Session/schedule management
+  - Floorplans
+- name: Professional
+  price: null
+  currency: null
+  billing_period: null
+  api_access: false
+  quotas:
+    events: unlimited
+    attendees: unlimited
+    email_messages_per_event: 10000
+  included:
+  - Everything in Tickets
+  - Manage room capacity and waitlists
+  - Onsite check-in app
+  - Create and send surveys
+  - Analytics and reporting
+  - Custom contact lists
+  - Personal invitations
+  - Email and event marketing campaign tracking
+  - Create, edit, and manage sessions
+  - Sponsor and exhibitor website blocks and imports
+  - 2D floorplans and 3D designs, seating charts and guest lists
+  excluded:
+  - API access
+  - SSO
+  - Domain and email whitelabeling
+  - SMS messaging
+  - Private and invitation-only events
+- name: Enterprise
+  price: null
+  currency: null
+  billing_period: null
+  api_access: true
+  quotas:
+    events: unlimited
+    attendees: unlimited
+    email_messages_per_event: 100000
+  included:
+  - Everything in Professional
+  - API Access
+  - Attendee and dashboard SSO
+  - Integrations (Slack, Salesforce, Marketo, HubSpot)
+  - Private and invitation-only events
+  - Domain whitelabeling
+  - Branded event portal across all events
+  - Email whitelabeling
+  - SMS messaging
+  - Manage speaker applications
+  - Auto-scheduling and restricted sessions
+  - Custom sponsor and exhibitor application forms
+api_entitlement:
+  organization_api:
+    plans:
+    - Enterprise
+    note: >-
+      "For Enterprise customers, we also offer an Organization API to access all
+      events and attendees at the organization level." Organization API
+      credentials are created, deleted and regenerated only by contacting support.
+    source: https://eventupplanner.zendesk.com/hc/en-us/articles/27101295757207-Event-and-Organization-API-Keys
+  event_api:
+    plans:
+    - Enterprise
+    note: >-
+      The plan table lists "API Access" only under Enterprise. Event API access
+      tokens themselves are self-managed in the event dashboard (Event -> Access
+      Tokens); a default UUID token is auto-created per event.
+    source: https://eventupplanner.zendesk.com/hc/en-us/articles/27101962543383-How-do-I-add-or-remove-access-tokens
+free_tier: false
+trial: false
+checked: '2026-08-13'

@@ -2,10 +2,8 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: https://developer.attendease.com/
-notes: >-
-  No official hosted/remote MCP server was found for Attendease. This is a
-  CANDIDATE tool list derived from the documented Organization API (/api/v2/)
-  operations, intended as a proposal for an MCP wrapper.
+notes: No official hosted/remote MCP server was found for Attendease. This is a CANDIDATE tool list derived
+  from the documented Organization API (/api/v2/) operations, intended as a proposal for an MCP wrapper.
 server:
   name: attendease
   transport: http
@@ -58,3 +56,9 @@ tools:
 - name: add_contact
   description: Add a contact to a contact list.
   source_operation: POST /api/v2/contact_lists/<contact_list_id>/contacts.json
+deployment:
+  mode: none
+  verified: derived
+  tools: 16
+  checked: '2026-08-12'
+  source: catalog MCP census
