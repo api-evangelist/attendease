@@ -35,6 +35,16 @@ x-acquired-by: tripleseat
 x-rebranded-to: EventUp Planner
 tags:
 - Company
+- Event
+- Event Management
+- Event Marketing
+- Conferences
+- Webinars
+- Attendees
+- Registration
+- Software-as-a-Service
+tags_raw:
+- Company
 - Events
 - Event Management
 - Event Marketing
@@ -56,6 +66,10 @@ apis:
   humanURL: https://developer.attendease.com/
   baseURL: https://your-org.attendease.org/api/v2/
   tags:
+  - Event
+  - Attendees
+  - Organization
+  tags_raw:
   - Events
   - Attendees
   - Organization
@@ -85,6 +99,10 @@ apis:
   humanURL: https://developer.attendease.com/
   baseURL: https://your-event.attendease.com/api/
   tags:
+  - Event
+  - Sessions
+  - Presenters
+  tags_raw:
   - Events
   - Sessions
   - Presenters
