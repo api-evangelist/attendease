@@ -47,6 +47,9 @@ x-backed-by:
 - 500-global
 x-acquired-by: tripleseat
 x-rebranded-to: EventUp Planner
+x-docs-platform: slate
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-19
 tags:
 - Company
 - Event
